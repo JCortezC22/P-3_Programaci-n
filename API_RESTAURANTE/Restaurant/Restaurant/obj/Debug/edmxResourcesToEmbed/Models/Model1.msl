@@ -1,24 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="RestaurantModelStoreContainer" CdmEntityContainer="RestaurantEntities">
-    <EntitySetMapping Name="Cliente">
-      <EntityTypeMapping TypeName="RestaurantModel.Cliente">
-        <MappingFragment StoreEntitySet="Cliente">
-          <ScalarProperty Name="idCliente" ColumnName="idCliente" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="detalle_factura">
-      <EntityTypeMapping TypeName="RestaurantModel.detalle_factura">
-        <MappingFragment StoreEntitySet="detalle_factura">
-          <ScalarProperty Name="idDetalle_venta" ColumnName="idDetalle_venta" />
-          <ScalarProperty Name="idVenta" ColumnName="idVenta" />
-          <ScalarProperty Name="idProducto" ColumnName="idProducto" />
-          <ScalarProperty Name="idCliente" ColumnName="idCliente" />
-          <ScalarProperty Name="precio" ColumnName="precio" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+  <EntityContainerMapping StorageEntityContainer="RestaurantModelStoreContainer" CdmEntityContainer="RestaurantEntities1">
     <EntitySetMapping Name="Producto">
       <EntityTypeMapping TypeName="RestaurantModel.Producto">
         <MappingFragment StoreEntitySet="Producto">
@@ -29,17 +11,6 @@
           <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
           <ScalarProperty Name="Estado" ColumnName="Estado" />
           <ScalarProperty Name="Foto" ColumnName="Foto" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Venta">
-      <EntityTypeMapping TypeName="RestaurantModel.Venta">
-        <MappingFragment StoreEntitySet="Venta">
-          <ScalarProperty Name="idVenta" ColumnName="idVenta" />
-          <ScalarProperty Name="idCliente" ColumnName="idCliente" />
-          <ScalarProperty Name="num_comprobante" ColumnName="num_comprobante" />
-          <ScalarProperty Name="fecha_hora" ColumnName="fecha_hora" />
-          <ScalarProperty Name="total" ColumnName="total" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

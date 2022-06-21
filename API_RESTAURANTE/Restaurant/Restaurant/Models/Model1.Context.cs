@@ -13,10 +13,10 @@ namespace Restaurant.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RestaurantEntities : DbContext
+    public partial class RestaurantEntities1 : DbContext
     {
-        public RestaurantEntities()
-            : base("name=RestaurantEntities")
+        public RestaurantEntities1()
+            : base("name=RestaurantEntities1")
         {
         }
     
@@ -25,9 +25,6 @@ namespace Restaurant.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Cliente> Cliente { get; set; }
-        public virtual DbSet<detalle_factura> detalle_factura { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
-        public virtual DbSet<Venta> Venta { get; set; }
     }
 }

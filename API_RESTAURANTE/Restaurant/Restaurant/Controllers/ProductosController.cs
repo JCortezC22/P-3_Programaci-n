@@ -13,7 +13,7 @@ namespace Restaurant.Controllers
         [System.Web.Http.HttpPost]
         public IHttpActionResult Add()
         {
-            using (Models.RestaurantEntities db = new Models.RestaurantEntities())
+            using (Models.RestaurantEntities1 db = new Models.RestaurantEntities1())
             {
                 var oProducto = new Models.Producto();
                 oProducto.Nombre = "Hamburguesa";
