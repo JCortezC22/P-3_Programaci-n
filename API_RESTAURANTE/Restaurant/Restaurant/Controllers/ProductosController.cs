@@ -17,7 +17,7 @@ namespace Restaurant.Controllers
             {
                 var oProducto = new Models.Producto();
                 oProducto.Nombre = "Hamburguesa";
-                oProducto.Descripcion = "Botella";
+                oProducto.Descripcion = "De pollo";
                 oProducto.Precio = Convert.ToDecimal(2.50);
                 oProducto.Cantidad = 12;
                 oProducto.Estado = 1;
