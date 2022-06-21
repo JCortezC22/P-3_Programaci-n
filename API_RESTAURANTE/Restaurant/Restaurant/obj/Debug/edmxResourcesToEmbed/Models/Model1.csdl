@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RestaurantModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="idCliente" />
+    </Key>
+    <Property Name="idCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="detalle_factura" Relationship="Self.FK__detalle_f__idCli__2E1BDC42" FromRole="Cliente" ToRole="detalle_factura" />
+    <NavigationProperty Name="Venta" Relationship="Self.FK__Venta__idCliente__29572725" FromRole="Cliente" ToRole="Venta" />
+  </EntityType>
+  <EntityType Name="detalle_factura">
+    <Key>
+      <PropertyRef Name="idDetalle_venta" />
+    </Key>
+    <Property Name="idDetalle_venta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idVenta" Type="Int32" Nullable="false" />
+    <Property Name="idProducto" Type="Int32" Nullable="false" />
+    <Property Name="idCliente" Type="Int32" Nullable="false" />
+    <Property Name="precio" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK__detalle_f__idCli__2E1BDC42" FromRole="detalle_factura" ToRole="Cliente" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK__detalle_f__idPro__2D27B809" FromRole="detalle_factura" ToRole="Producto" />
+    <NavigationProperty Name="Venta" Relationship="Self.FK__detalle_f__idVen__2C3393D0" FromRole="detalle_factura" ToRole="Venta" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="idProducto" />
+    </Key>
+    <Property Name="idProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="700" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Precio" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="Cantidad" Type="Int32" />
+    <Property Name="Estado" Type="Int32" />
+    <Property Name="Foto" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="detalle_factura" Relationship="Self.FK__detalle_f__idPro__2D27B809" FromRole="Producto" ToRole="detalle_factura" />
+  </EntityType>
+  <EntityType Name="Venta">
+    <Key>
+      <PropertyRef Name="idVenta" />
+    </Key>
+    <Property Name="idVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idCliente" Type="Int32" Nullable="false" />
+    <Property Name="num_comprobante" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_hora" Type="DateTime" Precision="3" />
+    <Property Name="total" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK__Venta__idCliente__29572725" FromRole="Venta" ToRole="Cliente" />
+    <NavigationProperty Name="detalle_factura" Relationship="Self.FK__detalle_f__idVen__2C3393D0" FromRole="Venta" ToRole="detalle_factura" />
+  </EntityType>
+  <Association Name="FK__detalle_f__idCli__2E1BDC42">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="detalle_factura" Type="Self.detalle_factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="idCliente" />
+      </Principal>
+      <Dependent Role="detalle_factura">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Venta__idCliente__29572725">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="idCliente" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__detalle_f__idPro__2D27B809">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="detalle_factura" Type="Self.detalle_factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="detalle_factura">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__detalle_f__idVen__2C3393D0">
+    <End Role="Venta" Type="Self.Venta" Multiplicity="1" />
+    <End Role="detalle_factura" Type="Self.detalle_factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta">
+        <PropertyRef Name="idVenta" />
+      </Principal>
+      <Dependent Role="detalle_factura">
+        <PropertyRef Name="idVenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RestaurantEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+    <EntitySet Name="detalle_factura" EntityType="Self.detalle_factura" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" />
+    <EntitySet Name="Venta" EntityType="Self.Venta" />
+    <AssociationSet Name="FK__detalle_f__idCli__2E1BDC42" Association="Self.FK__detalle_f__idCli__2E1BDC42">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="detalle_factura" EntitySet="detalle_factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Venta__idCliente__29572725" Association="Self.FK__Venta__idCliente__29572725">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
+    <AssociationSet Name="FK__detalle_f__idPro__2D27B809" Association="Self.FK__detalle_f__idPro__2D27B809">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="detalle_factura" EntitySet="detalle_factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__detalle_f__idVen__2C3393D0" Association="Self.FK__detalle_f__idVen__2C3393D0">
+      <End Role="Venta" EntitySet="Venta" />
+      <End Role="detalle_factura" EntitySet="detalle_factura" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
